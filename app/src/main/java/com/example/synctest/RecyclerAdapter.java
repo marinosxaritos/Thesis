@@ -3,6 +3,7 @@ package com.example.synctest;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,6 +33,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         holder.Name.setText(arrayList.get(position).getName());
+        holder.LastName.setText(arrayList.get(position).getLastName());
+        holder.Date.setText(arrayList.get(position).getDate());
+        holder.Time.setText(arrayList.get(position).getTime());
+        holder.Address.setText(arrayList.get(position).getAddress());
+
+
         int sync_status = arrayList.get(position).getSync_status();
         if (sync_status == DbContact.SYNC_STATUS_OK) {
             holder.Sync_Status.setImageResource(R.drawable.baseline_add_circle_outline_24);
@@ -50,12 +57,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
         ImageView Sync_Status;
         TextView Name;
+        TextView LastName;
+        TextView Date;
+        TextView Time;
+        TextView Address;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             Sync_Status = (ImageView) itemView.findViewById(R.id.imgSync);
             Name = (TextView) itemView.findViewById(R.id.txtName);
+            LastName = (TextView) itemView.findViewById(R.id.txtLastName);
+            Date = (TextView) itemView.findViewById(R.id.txtDate);
+            Time = (TextView) itemView.findViewById(R.id.txtTime);
+            Address = (TextView) itemView.findViewById(R.id.txtAddress);
         }
     }
 }

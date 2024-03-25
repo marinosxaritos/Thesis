@@ -9,41 +9,100 @@
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
         android:id="@+id/recyclerView"
+        android:layout_width="403dp"
+        android:layout_height="646dp"
+        android:layout_above="@id/scroll1"
         android:layout_alignParentTop="true"
-        />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp" />
 
-    <LinearLayout
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
+    <ScrollView
+        android:id="@+id/scroll1"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+        android:verticalScrollbarPosition="defaultPosition"
+        android:layout_alignParentBottom="true">
+    <RelativeLayout
         android:id="@+id/subform"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
 
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:id="@+id/name"
-         />
+        <!-- New Button: Get Location -->
 
-    <Button
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/submit"
-        android:onClick="submitName"
-        />
+        <Button
+            android:id="@+id/locationButton"
+            android:layout_below="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="Get Location" />
 
-    </LinearLayout>
+        <EditText
+            android:id="@+id/date"
+            android:layout_below="@+id/lastname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="Select Date" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginEnd="4dp"
+            android:hint="Name" />
+
+        <EditText
+            android:id="@+id/lastname"
+            android:layout_below="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginEnd="4dp"
+            android:hint="Last Name"/>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/date"
+            android:layout_marginStart="93dp"
+            android:layout_toEndOf="@+id/date"
+            android:text="Select Time"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/locationButton"
+            android:layout_marginStart="70dp"
+            android:layout_toEndOf="@id/locationButton"
+            android:text="Address"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/submitBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/locationButton"
+            android:layout_marginTop="2dp"
+            android:onClick="submitName"
+            android:text="@string/submit" />
+    </RelativeLayout>
+    </ScrollView>
+
 
 
 
 </RelativeLayout>
+
+

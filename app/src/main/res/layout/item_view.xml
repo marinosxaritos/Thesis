@@ -1,45 +1,98 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_height="150dp">
 
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
+        android:elevation="20dp"
+        app:cardCornerRadius="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="22dp"
-        tools:ignore="UselessParent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/marinos"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:id="@+id/txtName"
-            tools:ignore="RelativeOverlap" />
+        android:layout_height="145dp">
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/baseline_add_circle_outline_24"
-            android:layout_alignParentEnd="true"
-            android:id="@+id/imgSync"
-            android:layout_centerVertical="true"
-            android:contentDescription="TODO" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="22dp"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/marinos"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="RelativeOverlap" />
+
+            <TextView
+                android:id="@+id/txtLastName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtName"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="charitos"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtLastName"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="date"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/txtDate"
+                android:layout_marginStart="140dp"
+                android:layout_toEndOf="@+id/txtDate"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="time"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDate"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="address"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
 
+            <ImageView
+                android:id="@+id/imgSync"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="TODO"
+                android:src="@drawable/baseline_add_circle_outline_24" />
 
-
-
-    </RelativeLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 
 
 </LinearLayout>
-
