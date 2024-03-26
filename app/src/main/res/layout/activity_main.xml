@@ -6,6 +6,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -19,10 +20,22 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp" />
 
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/recyclerView"
+        android:background="@android:color/black" />
+
+
+
     <ScrollView
         android:id="@+id/scroll1"
     android:layout_width="match_parent"
     android:layout_height="250dp"
+        android:fadeScrollbars="false"
+        android:elevation="33dp"
+        android:scrollbarThumbVertical="@color/scrollbar"
         android:verticalScrollbarPosition="defaultPosition"
         android:layout_alignParentBottom="true">
     <RelativeLayout
@@ -36,46 +49,95 @@
 
         <Button
             android:id="@+id/locationButton"
-            android:layout_below="@+id/date"
+            android:layout_below="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="Get Location" />
+
+
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/address"
+            android:layout_marginTop="27dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/black" />
+
+        <TextView
+            android:id="@+id/headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lifeguard Information"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@color/headlineText"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="8dp" />
+
 
         <EditText
             android:id="@+id/date"
-            android:layout_below="@+id/lastname"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_below="@+id/lastname"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text"
             android:hint="Select Date" />
 
         <EditText
             android:id="@+id/name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_below="@+id/headline"
             android:layout_marginEnd="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text"
             android:hint="Name" />
 
         <EditText
             android:id="@+id/lastname"
             android:layout_below="@+id/name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginEnd="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text"
             android:hint="Last Name"/>
 
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/date"
-            android:layout_marginStart="93dp"
-            android:layout_toEndOf="@+id/date"
-            android:text="Select Time"
-            android:textSize="18sp"
+            android:layout_below="@+id/date"
+            android:text="SELECT TIME"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:textSize="15.5sp"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/black"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:clickable="true"
             android:textStyle="bold" />
 
         <TextView
@@ -85,22 +147,33 @@
             android:layout_alignBaseline="@id/locationButton"
             android:layout_marginStart="70dp"
             android:layout_toEndOf="@id/locationButton"
+            android:layout_marginTop="8dp"
             android:text="Address"
+            android:textColor="@color/text"
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        
+
+        
         <Button
             android:id="@+id/submitBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/locationButton"
+            android:layout_below="@+id/line"
             android:layout_marginTop="2dp"
             android:onClick="submitName"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textStyle="bold"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/black"
             android:text="@string/submit" />
+
+
     </RelativeLayout>
     </ScrollView>
-
-
 
 
 </RelativeLayout>

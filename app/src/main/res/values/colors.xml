@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background">#495057</color>  76ABAE
+    <color name="button">#EEEEEE</color>
+    <color name="cardView">#343a40</color>   C4DFDF
+    <color name="headlineText">#B2FFEB3B</color>
+    <color name="headlineTextCardView">#A3FFEB3B</color>  #ced4da
+    <color name="outlineColor">#A3FFEB3B</color>
+    <color name="scrollbar">#4BFFEB3B</color>
+    <color name="text">#adb5bd</color>
+
+
 </resources>

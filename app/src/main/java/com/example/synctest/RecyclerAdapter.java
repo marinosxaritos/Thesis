@@ -41,10 +41,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
         int sync_status = arrayList.get(position).getSync_status();
         if (sync_status == DbContact.SYNC_STATUS_OK) {
-            holder.Sync_Status.setImageResource(R.drawable.baseline_add_circle_outline_24);
+            holder.Sync_Status.setImageResource(R.drawable.baseline_add_task_24);
         }
         else {
-            holder.Sync_Status.setImageResource(R.drawable.ic_launcher_background);
+            holder.Sync_Status.setImageResource(R.drawable.baseline_add_circle_outline_24);
         }
     }
 

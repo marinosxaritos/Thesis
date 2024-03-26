@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
+    android:background="@color/background"
     android:layout_width="match_parent"
-    android:layout_height="150dp">
+    android:layout_height="400dp">
 
     <androidx.cardview.widget.CardView
         android:elevation="20dp"
@@ -13,9 +14,13 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-
+        app:cardElevation="9dp"
+        app:cardBackgroundColor="@color/cardView"
+        android:outlineSpotShadowColor="@color/outlineColor"
+        android:outlineAmbientShadowColor="@color/cardview_light_background"
+        app:cardPreventCornerOverlap="false"
         android:layout_width="match_parent"
-        android:layout_height="145dp">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -25,14 +30,29 @@
             tools:ignore="UselessParent">
 
             <TextView
+                android:id="@+id/txtInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/headlineTextCardView"
+                android:text="Lifeguard Information"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="RelativeOverlap" />
+
+            <TextView
                 android:id="@+id/txtName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/marinos"
+                android:layout_below="@+id/txtInformation"
+                android:text="marinos"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:textColor="@color/text"
                 tools:ignore="RelativeOverlap" />
+
 
             <TextView
                 android:id="@+id/txtLastName"
@@ -42,6 +62,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="charitos"
+                android:textColor="@color/text"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -53,6 +74,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="date"
+                android:textColor="@color/text"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -60,12 +82,11 @@
                 android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/txtDate"
-                android:layout_marginStart="140dp"
-                android:layout_toEndOf="@+id/txtDate"
+                android:layout_below="@+id/txtDate"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="time"
+                android:textColor="@color/text"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -73,10 +94,11 @@
                 android:id="@+id/txtAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtDate"
+                android:layout_below="@+id/txtTime"
                 android:layout_marginTop="8dp"
-                android:gravity="center"
+                android:gravity="left"
                 android:text="address"
+                android:textColor="@color/text"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -86,7 +108,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="6dp"
                 android:contentDescription="TODO"
                 android:src="@drawable/baseline_add_circle_outline_24" />
 
