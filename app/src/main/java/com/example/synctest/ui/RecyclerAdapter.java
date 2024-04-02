@@ -1,14 +1,17 @@
-package com.example.synctest;
+package com.example.synctest.ui;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.synctest.R;
+import com.example.synctest.contacts.Contact;
+import com.example.synctest.contacts.DbContact;
 
 import java.util.ArrayList;
 

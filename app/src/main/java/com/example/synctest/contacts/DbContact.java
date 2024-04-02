@@ -1,4 +1,4 @@
-package com.example.synctest;
+package com.example.synctest.contacts;
 
 public class DbContact {
     public static final int SYNC_STATUS_OK = 0;

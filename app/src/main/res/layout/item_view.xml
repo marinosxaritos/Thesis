@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:background="@color/background"
     android:layout_width="match_parent"
-    android:layout_height="400dp">
+    android:layout_height="300dp">
 
     <androidx.cardview.widget.CardView
         android:elevation="20dp"
@@ -29,6 +29,7 @@
             android:layout_marginEnd="22dp"
             tools:ignore="UselessParent">
 
+
             <TextView
                 android:id="@+id/txtInformation"
                 android:layout_width="wrap_content"
@@ -41,6 +42,14 @@
                 android:textStyle="bold"
                 tools:ignore="RelativeOverlap" />
 
+            <View
+                android:id="@+id/line3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/txtInformation"
+                android:layout_marginTop="3dp"
+                android:background="@color/background" />
+
             <TextView
                 android:id="@+id/txtName"
                 android:layout_width="wrap_content"
@@ -48,11 +57,19 @@
                 android:gravity="center"
                 android:layout_below="@+id/txtInformation"
                 android:text="marinos"
+                android:layout_marginTop="12dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/text"
                 tools:ignore="RelativeOverlap" />
 
+            <View
+                android:id="@+id/line8"
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_below="@id/txtName"
+                android:layout_marginTop="2dp"
+                android:background="@color/background" />
 
             <TextView
                 android:id="@+id/txtLastName"
@@ -66,6 +83,14 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <View
+                android:id="@+id/line4"
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_below="@id/txtLastName"
+                android:layout_marginTop="2dp"
+                android:background="@color/background" />
+
             <TextView
                 android:id="@+id/txtDate"
                 android:layout_width="wrap_content"
@@ -77,6 +102,14 @@
                 android:textColor="@color/text"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <View
+                android:id="@+id/line5"
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_below="@id/txtDate"
+                android:layout_marginTop="2dp"
+                android:background="@color/background" />
 
             <TextView
                 android:id="@+id/txtTime"
@@ -90,6 +123,14 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <View
+                android:id="@+id/line6"
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_below="@id/txtTime"
+                android:layout_marginTop="2dp"
+                android:background="@color/background" />
+
             <TextView
                 android:id="@+id/txtAddress"
                 android:layout_width="wrap_content"
@@ -101,6 +142,8 @@
                 android:textColor="@color/text"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+
 
 
             <ImageView

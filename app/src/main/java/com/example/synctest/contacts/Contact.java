@@ -1,4 +1,4 @@
-package com.example.synctest;
+package com.example.synctest.contacts;
 
 public class Contact {
 
@@ -11,7 +11,7 @@ public class Contact {
     private int Sync_status;
 
 
-    Contact (String Name, String LastName, String Date, String Time, String Address, int Sync_status){
+    public Contact(String Name, String LastName, String Date, String Time, String Address, int Sync_status){
         this.setName(Name);
         this.setLastName(LastName);
         this.setDate(Date);

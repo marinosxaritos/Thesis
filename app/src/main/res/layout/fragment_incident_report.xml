@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
+    tools:context=".fragments.IncidentReportFragment">
+
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/incidentHeadline"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Incident Report"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/headlineText"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp" />
+
+
+
+    <Button
+        android:id="@+id/insideWaterButton"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/incidentHeadline"
+        android:background="@drawable/rounded_button"
+        android:text="INSIDE WATER"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+    <Button
+        android:id="@+id/outsideWaterButton"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/incidentHeadline"
+        android:background="@drawable/rounded_button"
+        android:text="OUTSIDE WATER"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+
+
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rounded_button"
+        android:text="Back"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@+id/insideWaterButton"
+        android:layout_marginTop="18dp" />
+
+
+</RelativeLayout>

@@ -1,12 +1,13 @@
 package com.example.synctest;
 
-import com.example.synctest.Contact;
+import com.example.synctest.contacts.Contact;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +46,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.synctest.contacts.DbContact;
+import com.example.synctest.database.DbHelper;
+import com.example.synctest.fragments.IncidentReportFragment;
+import com.example.synctest.ui.RecyclerAdapter;
+import com.example.synctest.utilities.MySingleton;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -58,7 +64,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -73,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
     Button btLocation;
     TextView Address;
     TextView Time;
+    Button btNext;
     FusedLocationProviderClient fusedLocationProviderClient;
     DatePickerDialog.OnDateSetListener setListener;
     RecyclerView recyclerView;
@@ -222,6 +228,25 @@ public class MainActivity extends AppCompatActivity {
                 readFromLocalStorage();
             }
         };
+
+        btNext = (Button) findViewById(R.id.nextBtn);
+
+
+
+        btNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //btNext.setVisibility(View.GONE);
+                findViewById(R.id.recyclerView).setVisibility(View.GONE);
+                findViewById(R.id.scroll1).setVisibility(View.GONE);
+
+
+                Fragment fragment = new IncidentReportFragment();
+
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.activity_main, fragment).commit();
+            }
+        });
     }
 
     private void getLocation() {

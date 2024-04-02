@@ -1,4 +1,4 @@
-package com.example.synctest;
+package com.example.synctest.utilities;
 
 import android.content.Context;
 

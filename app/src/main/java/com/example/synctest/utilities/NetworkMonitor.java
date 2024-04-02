@@ -1,4 +1,4 @@
-package com.example.synctest;
+package com.example.synctest.utilities;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -10,13 +10,14 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.synctest.contacts.DbContact;
+import com.example.synctest.database.DbHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".fragments.InsideWaterIncidentFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/incidentHeadline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Inside the Water"
+        android:textColor="@color/headlineText"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/flagColorText"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/incidentHeadline"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/text"
+        android:text="Flag Color:"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/flagSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/incidentHeadline"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="120dp"
+        android:popupBackground="@color/cardView"
+        android:popupElevation="10dp"
+        android:textAlignment="center"
+        android:backgroundTint="@color/outlineColor"
+        />
+
+    <Button
+        android:id="@+id/sendBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rounded_button"
+        android:text="SENT"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

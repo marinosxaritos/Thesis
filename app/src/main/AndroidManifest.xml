@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name=".NetworkMonitor"
+            android:name=".utilities.NetworkMonitor"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
