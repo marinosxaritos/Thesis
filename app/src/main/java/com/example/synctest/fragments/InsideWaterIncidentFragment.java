@@ -1,5 +1,6 @@
 package com.example.synctest.fragments;
 
+import static android.R.layout.simple_list_item_checked;
 import static android.R.layout.simple_spinner_item;
 
 import android.os.Bundle;
@@ -11,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,11 +33,12 @@ import java.util.Map;
 public class InsideWaterIncidentFragment extends Fragment {
 
     Spinner spinner;
+    Spinner rescueSpinner;
     Button sendButton;
-    Button backButton;
-
-    Button insideButton;
-    Button outsideButton;
+    TextView distance;
+    TextView rescued;
+    RadioGroup radioGroup;
+    String checkedRadioText;
 
 
     @Override
@@ -48,21 +53,51 @@ public class InsideWaterIncidentFragment extends Fragment {
         ArrayAdapter<String> flagAdapter = new ArrayAdapter<>(getContext(), simple_spinner_item, flag);
         spinner.setAdapter(flagAdapter);
 
+        rescueSpinner = (Spinner) rootView.findViewById(R.id.rescueSpinner);
+
+        String[] rescue = {"Can", "Board", "Boat"};
+        ArrayAdapter<String> rescueAdapter = new ArrayAdapter<>(getContext(), simple_spinner_item, rescue);
+        rescueSpinner.setAdapter(rescueAdapter);
+
+        distance = (EditText) rootView.findViewById(R.id.distanceEdit);
+
+        rescued = (EditText) rootView.findViewById(R.id.rescuedEdit);
+
+        radioGroup = (RadioGroup) rootView.findViewById(R.id.buoysRadio);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                RadioButton buoysRadioButton = (RadioButton) rootView.findViewById(checkedId);
+                checkedRadioText = buoysRadioButton.getText().toString();
+            }
+        });
+
+
         sendButton = (Button) rootView.findViewById(R.id.sendBtn);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Get the selected flag from the spinner
                 String selectedFlag = spinner.getSelectedItem().toString();
+                String distanceMeter = distance.getText().toString();
+
+                String selectedBuoysRadio = checkedRadioText != null ? checkedRadioText : "";
+
+                String rescueItem = rescueSpinner.getSelectedItem().toString();
+
+                String rescuedPeople = rescued.getText().toString();
+
                 // Call the method to send the flag to MySQL using Volley
-                sendFlagToServer(selectedFlag);
+                sendInsideWaterInformation(selectedFlag, distanceMeter, selectedBuoysRadio, rescueItem, rescuedPeople);
+                distance.setText("");
+                rescued.setText("");
             }
         });
 
         return rootView;
     }
 
-    private void sendFlagToServer(final String flag) {
+    private void sendInsideWaterInformation(final String flag, String distance, String buoys, String rescue, String rescued) {
         String url = "http://192.168.1.13/syncdemo/insideWaterInsident.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -85,6 +120,10 @@ public class InsideWaterIncidentFragment extends Fragment {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("flag", flag); // Add the flag to the request parameters
+                params.put("distance", distance);
+                params.put("buoys", buoys);
+                params.put("rescue", rescue);
+                params.put("rescued", rescued);
                 return params;
             }
         };

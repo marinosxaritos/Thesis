@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,9 @@ import java.util.Map;
 public class OutsideWaterIncidentFragment extends Fragment {
 
     Spinner spinner;
+    Spinner causeSpinner;
+    EditText distance;
+    TextView rescued;
     Button sendButton;
 
 
@@ -43,21 +47,36 @@ public class OutsideWaterIncidentFragment extends Fragment {
         ArrayAdapter<String> flagAdapter = new ArrayAdapter<>(getContext(), simple_spinner_item, flag);
         spinner.setAdapter(flagAdapter);
 
+        causeSpinner = (Spinner) rootView.findViewById(R.id.causeSpinner);
+
+        String[] cause = {"Pathological", "Bleeding", "Burns", "Injury", "Sunstroke", "Heat stroke", "Marine life"};
+        ArrayAdapter<String> causeAdapter = new ArrayAdapter<>(getContext(), simple_spinner_item, cause);
+        causeSpinner.setAdapter(causeAdapter);
+
+        distance = (EditText) rootView.findViewById(R.id.distanceEdit);
+
+        rescued = (EditText) rootView.findViewById(R.id.rescuedEdit);
+
         sendButton = (Button) rootView.findViewById(R.id.sendBtn);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Get the selected flag from the spinner
                 String selectedFlag = spinner.getSelectedItem().toString();
+                String causeOfIncident = causeSpinner.getSelectedItem().toString();
+                String distanceMeter = distance.getText().toString();
+                String rescuedPeople = rescued.getText().toString();
                 // Call the method to send the flag to MySQL using Volley
-                sendFlagToServer(selectedFlag);
+                sendOutsideWaterInformation(selectedFlag, causeOfIncident, distanceMeter, rescuedPeople);
+                distance.setText("");
+                rescued.setText("");
             }
         });
 
         return rootView;
     }
 
-    private void sendFlagToServer(final String flag) {
+    private void sendOutsideWaterInformation(final String flag, String cause, String distance, String rescued) {
         String url = "http://192.168.1.13/syncdemo/outsideWaterInsident.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -80,6 +99,9 @@ public class OutsideWaterIncidentFragment extends Fragment {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("flag", flag); // Add the flag to the request parameters
+                params.put("cause", cause);
+                params.put("distance", distance);
+                params.put("rescued", rescued);
                 return params;
             }
         };

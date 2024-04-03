@@ -17,6 +17,14 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/incidentHeadline"
+        android:layout_marginTop="3dp"
+        android:background="@color/cardView" />
+
     <TextView
         android:id="@+id/flagColorText"
         android:layout_width="wrap_content"
@@ -45,15 +53,67 @@
         android:backgroundTint="@color/outlineColor"
         />
 
+    <TextView
+        android:id="@+id/causeText"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/flagColorText"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/text"
+        android:text="Cause of Incident:"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/causeSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/flagColorText"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="190dp"
+        android:popupBackground="@color/cardView"
+        android:popupElevation="10dp"
+        android:textAlignment="center"
+        android:backgroundTint="@color/outlineColor"
+        />
+
+    <EditText
+        android:id="@+id/distanceEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Distance from the tower"
+        android:layout_below="@+id/causeSpinner"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="@color/text" />
+
+    <EditText
+        android:id="@+id/rescuedEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Number of rescued people"
+        android:layout_below="@+id/distanceEdit"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="@color/text" />
+
     <Button
         android:id="@+id/sendBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="10dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/rescuedEdit"
         android:background="@drawable/rounded_button"
         android:text="SENT"
         android:textColor="@color/black"

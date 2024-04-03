@@ -17,6 +17,15 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/incidentHeadline"
+        android:layout_marginTop="3dp"
+        android:background="@color/cardView" />
+
+
     <TextView
         android:id="@+id/flagColorText"
         android:layout_width="wrap_content"
@@ -45,15 +54,111 @@
         android:backgroundTint="@color/outlineColor"
         />
 
+
+    <EditText
+        android:id="@+id/distanceEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Distance from the tower"
+        android:layout_below="@+id/buoysText"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="@color/text" />
+
+
+
+    <TextView
+        android:id="@+id/buoysText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rescueText"
+        android:text="In / Out of buoys:"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/text"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <RadioGroup
+        android:id="@+id/buoysRadio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/rescueText"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="194dp"
+        android:layout_marginTop="32dp"
+        >
+
+        <RadioButton
+            android:id="@+id/inBuoysRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="in" />
+
+        <RadioButton
+            android:id="@+id/outBuoysRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="out"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/rescueText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/flagColorText"
+        android:text="Rescue with:"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/text"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <Spinner
+        android:id="@+id/rescueSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/flagColorText"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="148dp"
+        android:popupBackground="@color/cardView"
+        android:popupElevation="10dp"
+        android:backgroundTint="@color/outlineColor"
+        />
+
+    <EditText
+        android:id="@+id/rescuedEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Number of rescued people"
+        android:layout_below="@+id/distanceEdit"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="@color/text" />
+
+
+
     <Button
         android:id="@+id/sendBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="10dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/rescuedEdit"
         android:background="@drawable/rounded_button"
         android:text="SENT"
         android:textColor="@color/black"
