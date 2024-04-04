@@ -3,18 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
-    android:id="@+id/incidentReportFragment"
-    tools:context=".fragments.IncidentReportFragment">
-
+    tools:context=".fragments.FirstAidFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/incidentHeadline"
+        android:id="@+id/firstAidHeadline"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="Incident Report"
+        android:text="First Aid Fragment"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/headlineText"
@@ -22,70 +19,39 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="8dp" />
 
-
-
     <Button
-        android:id="@+id/insideWaterButton"
+        android:id="@+id/breathButton"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="10dp"
-        android:layout_below="@+id/incidentHeadline"
+        android:layout_below="@+id/firstAidHeadline"
         android:background="@drawable/rounded_button"
-        android:text="INSIDE WATER"
+        android:text="BREATH"
         android:textColor="@color/black"
         android:textStyle="bold" />
+
     <Button
-        android:id="@+id/outsideWaterButton"
+        android:id="@+id/noBreathButton"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="10dp"
-        android:layout_below="@+id/incidentHeadline"
+        android:layout_below="@+id/firstAidHeadline"
         android:background="@drawable/rounded_button"
-        android:text="OUTSIDE WATER"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
-
-
-    <Button
-        android:id="@+id/nextBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/backBtn"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:textStyle="bold"
-        android:background="@drawable/rounded_button"
-        android:textColor="@color/black"
-        android:text="NEXT" />
-
-    <Button
-        android:id="@+id/backBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/rounded_button"
-        android:text="Back"
+        android:text="NO BREATH"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
     <FrameLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/frameLayout1"
         android:layout_width="match_parent"
         android:layout_height="450dp"
-        android:layout_below="@+id/insideWaterButton"
+        android:layout_below="@+id/breathButton"
         android:layout_marginTop="18dp" />
-
 
 </RelativeLayout>

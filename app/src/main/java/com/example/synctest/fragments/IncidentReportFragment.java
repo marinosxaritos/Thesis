@@ -39,7 +39,7 @@ public class IncidentReportFragment extends Fragment {
 
 
     Button backButton;
-
+    Button nextButton;
     Button insideButton;
     Button outsideButton;
 
@@ -52,6 +52,7 @@ public class IncidentReportFragment extends Fragment {
 
         insideButton = (Button) rootView.findViewById(R.id.insideWaterButton);
         outsideButton = (Button) rootView.findViewById(R.id.outsideWaterButton);
+
 
         insideButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +69,21 @@ public class IncidentReportFragment extends Fragment {
         });
 
 
+        nextButton = (Button) rootView.findViewById(R.id.nextBtn);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rootView.findViewById(R.id.insideWaterButton).setVisibility(View.GONE);
+                rootView.findViewById(R.id.outsideWaterButton).setVisibility(View.GONE);
+                rootView.findViewById(R.id.nextBtn).setVisibility(View.GONE);
+
+                Fragment firstAidFrag = new FirstAidFragment();
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.incidentReportFragment, firstAidFrag).commit();
+            }
+        });
+
+
         backButton = (Button) rootView.findViewById(R.id.backBtn);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +96,7 @@ public class IncidentReportFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
 
         return rootView;
     }
