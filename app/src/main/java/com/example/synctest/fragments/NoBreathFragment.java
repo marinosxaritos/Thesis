@@ -7,18 +7,114 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.synctest.R;
+import com.example.synctest.utilities.MySingleton;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class NoBreathFragment extends Fragment {
 
+    Button sendButton;
 
+    RadioGroup positionRadio, transportRadio, sensesRadio;
+
+    String checkedRadioText, checkedRadioText1, checkedRadioText2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_no_breath, container, false);
+        View rootView =  inflater.inflate(R.layout.fragment_no_breath, container, false);
+
+        positionRadio = (RadioGroup) rootView.findViewById(R.id.recoveryPositionRadio);
+        transportRadio = (RadioGroup) rootView.findViewById(R.id.transportedRadio);
+        sensesRadio = (RadioGroup) rootView.findViewById(R.id.sensationsRadio);
+
+        positionRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                RadioButton positionRadioButton = (RadioButton) rootView.findViewById(checkedId);
+                checkedRadioText = positionRadioButton.getText().toString();
+            }
+        });
+
+        transportRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                RadioButton transportRadioButton = (RadioButton) rootView.findViewById(checkedId);
+                checkedRadioText1 = transportRadioButton.getText().toString();
+            }
+        });
+
+        sensesRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                RadioButton sensesRadioButton = (RadioButton) rootView.findViewById(checkedId);
+                checkedRadioText2 = sensesRadioButton.getText().toString();
+            }
+        });
+
+        sendButton = (Button) rootView.findViewById(R.id.sendBtn);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String selectedPositionRadio = checkedRadioText != null ? checkedRadioText : "";
+                String selectedTransportRadio = checkedRadioText1 != null ? checkedRadioText1 : "";
+                String selectedSensesRadio = checkedRadioText2 != null ? checkedRadioText2 : "";
+
+
+                // Call the method to send the flag to MySQL using Volley
+                sendNoBreathInformation(selectedPositionRadio, selectedTransportRadio, selectedSensesRadio);
+
+            }
+        });
+
+
+        return rootView;
+    }
+
+    private void sendNoBreathInformation(final String recoveryPosition, String transported, String sensations) {
+        String url = "http://192.168.1.13/syncdemo/breathInsident.php";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Handle response from the server
+                        Toast.makeText(requireContext(), "Data sent successfully", Toast.LENGTH_SHORT).show();
+                        // Optionally, navigate to another fragment or perform other actions
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle error response
+                        Toast.makeText(requireContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("recoveryPosition", recoveryPosition); // Add the flag to the request parameters
+                params.put("transported", transported);
+                params.put("sensations", sensations);
+                return params;
+            }
+        };
+
+        // Add the request to the RequestQueue
+        MySingleton.getInstance(requireContext()).addToRequestQue(stringRequest);
     }
 }

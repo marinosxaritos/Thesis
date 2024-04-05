@@ -105,7 +105,7 @@ public class InsideWaterIncidentFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         // Handle response from the server
-                        Toast.makeText(requireContext(), "Flag sent successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Dat sent successfully", Toast.LENGTH_SHORT).show();
                         // Optionally, navigate to another fragment or perform other actions
                     }
                 },

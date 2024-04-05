@@ -11,7 +11,7 @@
         android:id="@+id/firstAidHeadline"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="First Aid Fragment"
+        android:text="First Aid"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/headlineText"
@@ -29,7 +29,7 @@
         android:layout_marginBottom="10dp"
         android:layout_below="@+id/firstAidHeadline"
         android:background="@drawable/rounded_button"
-        android:text="BREATH"
+        android:text="NO BREATH"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
@@ -43,7 +43,7 @@
         android:layout_marginBottom="10dp"
         android:layout_below="@+id/firstAidHeadline"
         android:background="@drawable/rounded_button"
-        android:text="NO BREATH"
+        android:text="BREATH"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
