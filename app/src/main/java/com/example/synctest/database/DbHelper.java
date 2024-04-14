@@ -10,9 +10,9 @@ import com.example.synctest.contacts.DbContact;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String CREATE_TABLE = "create table " + DbContact.TABLE_NAME +
-            "(id integer primary key autoincrement, "+ DbContact.NAME + " text, " + DbContact.LAST_NAME + " text, " + DbContact.DATE + " text, " + DbContact.TIME + " text, " + DbContact.ADDRESS + " text, " + DbContact.SYNC_STATUS +
+            "(id integer primary key autoincrement, "+ DbContact.LICENSE + " text, " + DbContact.NAME + " text, " + DbContact.LAST_NAME + " text, " + DbContact.DATE + " text, " + DbContact.TIME + " text, " + DbContact.ADDRESS + " text, " + DbContact.SYNC_STATUS +
         " integer);";
 
 
@@ -38,8 +38,9 @@ public class DbHelper extends SQLiteOpenHelper {
             onCreate(db);
     }
 
-    public void saveToLocalDatabase(String name, String last_name, String date, String time, String address, int sync_status, SQLiteDatabase database) {
+    public void saveToLocalDatabase(String license, String name, String last_name, String date, String time, String address, int sync_status, SQLiteDatabase database) {
         ContentValues contentValues = new ContentValues();
+        contentValues.put(DbContact.LICENSE, license);
         contentValues.put(DbContact.NAME, name);
         contentValues.put(DbContact.LAST_NAME, last_name);
         contentValues.put(DbContact.DATE, date);
@@ -52,7 +53,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     public Cursor readFromLocalDatabase(SQLiteDatabase database) {
-        String[] projection = {DbContact.NAME, DbContact.LAST_NAME, DbContact.DATE, DbContact.TIME, DbContact.ADDRESS, DbContact.SYNC_STATUS};
+        String[] projection = {DbContact.LICENSE, DbContact.NAME, DbContact.LAST_NAME, DbContact.DATE, DbContact.TIME, DbContact.ADDRESS, DbContact.SYNC_STATUS};
 
         return (database.query(DbContact.TABLE_NAME, projection, null, null, null, null, null));
     }
@@ -65,12 +66,12 @@ public class DbHelper extends SQLiteOpenHelper {
          database.update(DbContact.TABLE_NAME, contentValues, selection, selection_args);
     } */
 
-    public void updateLocalDatabase(String name, String last_name, String date, String time, String address,  int sync_status, SQLiteDatabase database) {
+    public void updateLocalDatabase(String license, String name, String last_name, String date, String time, String address,  int sync_status, SQLiteDatabase database) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DbContact.SYNC_STATUS, sync_status);
-        String selection = DbContact.NAME + " LIKE ? AND " + DbContact.LAST_NAME + " LIKE ? AND " + DbContact.DATE + " LIKE ? AND " + DbContact.TIME + " LIKE ? AND " + DbContact.ADDRESS + " LIKE ?";
+        String selection = DbContact.LICENSE + " LIKE ? AND " + DbContact.NAME + " LIKE ? AND " + DbContact.LAST_NAME + " LIKE ? AND " + DbContact.DATE + " LIKE ? AND " + DbContact.TIME + " LIKE ? AND " + DbContact.ADDRESS + " LIKE ?";
         //String selection = DbContact.NAME + DbContact.LAST_NAME + " LIKE ?"; // Added space after column name
-        String[] selection_args = {name, last_name, date, time, address};
+        String[] selection_args = {license, name, last_name, date, time, address};
 
         database.update(DbContact.TABLE_NAME, contentValues, selection, selection_args);
     }

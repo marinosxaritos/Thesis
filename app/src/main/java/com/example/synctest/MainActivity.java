@@ -72,6 +72,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     int timeHour, timeMinute;
+    EditText License;
     EditText Name;
     EditText LastName;
     EditText Date;
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        License = (EditText) findViewById(R.id.license);
         Name = (EditText) findViewById(R.id.name);
         LastName = (EditText) findViewById(R.id.lastname);
 
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyItemRemoved(position);
 
                 // Delete the contact from the local database
-                deleteFromLocalStorage(contactToDelete.getName(), contactToDelete.getLastName(), contactToDelete.getDate(), contactToDelete.getTime(), contactToDelete.getAddress());
+                deleteFromLocalStorage(contactToDelete.getLicense() ,contactToDelete.getName(), contactToDelete.getLastName(), contactToDelete.getDate(), contactToDelete.getTime(), contactToDelete.getAddress());
             }
 
         };
@@ -289,12 +291,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitName(View view) {
+        String license = License.getText().toString();
         String  name = Name.getText().toString();
         String last_name = LastName.getText().toString();
         String date = Date.getText().toString();
         String time = Time.getText().toString();
         String address = Address.getText().toString();
-        saveToAppServer(name, last_name, date, time, address);
+        saveToAppServer(license, name, last_name, date, time, address);
+        License.setText("");
         Name.setText("");
         LastName.setText("");
         Date.setText("");
@@ -311,13 +315,14 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = dbHelper.readFromLocalDatabase(database);
 
         while (cursor.moveToNext()) {
+            @SuppressLint("Range") String license = cursor.getString(cursor.getColumnIndex(DbContact.LICENSE));
             @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(DbContact.NAME));
             @SuppressLint("Range") String last_name = cursor.getString(cursor.getColumnIndex(DbContact.LAST_NAME));
             @SuppressLint("Range") String date = cursor.getString(cursor.getColumnIndex(DbContact.DATE));
             @SuppressLint("Range") String time = cursor.getString(cursor.getColumnIndex(DbContact.TIME));
             @SuppressLint("Range") String address = cursor.getString(cursor.getColumnIndex(DbContact.ADDRESS));
             @SuppressLint("Range") int sync_status = cursor.getInt(cursor.getColumnIndex(DbContact.SYNC_STATUS));
-            arrayList.add(new Contact(name, last_name, date, time, address, sync_status));
+            arrayList.add(new Contact(license, name, last_name, date, time, address, sync_status));
         }
 
         adapter.notifyDataSetChanged();
@@ -328,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void saveToAppServer(final String name, String last_name, String date, String time, String address) {
+    private void saveToAppServer(final String license, String name, String last_name, String date, String time, String address) {
 
 
         if (checkNetworkConnection()) {
@@ -342,10 +347,10 @@ public class MainActivity extends AppCompatActivity {
                                 String Response = jsonObject.getString("response");
 
                                 if (Response.equals("OK")) {
-                                    saveToLocalStorage(name, last_name, date, time, address, DbContact.SYNC_STATUS_OK);
+                                    saveToLocalStorage(license, name, last_name, date, time, address, DbContact.SYNC_STATUS_OK);
                                 }
                                 else {
-                                    saveToLocalStorage(name, last_name, date, time, address, DbContact.SYNC_STATUS_FAILED);
+                                    saveToLocalStorage(license, name, last_name, date, time, address, DbContact.SYNC_STATUS_FAILED);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -355,7 +360,7 @@ public class MainActivity extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    saveToLocalStorage(name, last_name, date, time, address, DbContact.SYNC_STATUS_FAILED);
+                    saveToLocalStorage(license, name, last_name, date, time, address, DbContact.SYNC_STATUS_FAILED);
                 }
             })
             {
@@ -363,6 +368,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
+                    params.put("license", license);
                     params.put("name", name);
                     params.put("last_name", last_name);
                     params.put("date", date);
@@ -374,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
             MySingleton.getInstance(MainActivity.this).addToRequestQue(stringRequest);
         }
         else {
-            saveToLocalStorage(name,last_name, date, time, address, DbContact.SYNC_STATUS_FAILED);
+            saveToLocalStorage(license, name, last_name, date, time, address, DbContact.SYNC_STATUS_FAILED);
         }
 
     }
@@ -386,25 +392,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private void saveToLocalStorage(String name, String last_name, String date, String time, String address, int sync) {
+    private void saveToLocalStorage(String license, String name, String last_name, String date, String time, String address, int sync) {
 
         DbHelper dbHelper = new DbHelper(this);
         SQLiteDatabase database = dbHelper.getReadableDatabase();
-        dbHelper.saveToLocalDatabase(name, last_name, date, time, address, sync, database);
+        dbHelper.saveToLocalDatabase(license, name, last_name, date, time, address, sync, database);
         readFromLocalStorage();
         adapter.notifyDataSetChanged();
         dbHelper.close();
     }
 
 
-    private void deleteFromLocalStorage(String name, String lastName, String date, String time, String address) {
+    private void deleteFromLocalStorage(String license, String name, String lastName, String date, String time, String address) {
         DbHelper dbHelper = new DbHelper(MainActivity.this);
         SQLiteDatabase database = dbHelper.getWritableDatabase();
 
         // Define the selection criteria for the row to delete
-        String selection = DbContact.NAME + " = ? AND " + DbContact.LAST_NAME + " = ? AND " + DbContact.DATE + " = ? AND " + DbContact.TIME + " = ? AND " + DbContact.ADDRESS +  " = ?";
+        String selection = DbContact.LICENSE + " = ? AND " + DbContact.NAME + " = ? AND " + DbContact.LAST_NAME + " = ? AND " + DbContact.DATE + " = ? AND " + DbContact.TIME + " = ? AND " + DbContact.ADDRESS +  " = ?";
         // Define the selection arguments
-        String[] selectionArgs = {name, lastName, date, time, address};
+        String[] selectionArgs = {license, name, lastName, date, time, address};
 
         // Issue SQL statement to delete the selected row
         int deletedRows = database.delete(DbContact.TABLE_NAME, selection, selectionArgs);

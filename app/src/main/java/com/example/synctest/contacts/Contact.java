@@ -2,6 +2,7 @@ package com.example.synctest.contacts;
 
 public class Contact {
 
+    private String License;
     private String Name;
     private String LastName;
     private String Date;
@@ -11,13 +12,23 @@ public class Contact {
     private int Sync_status;
 
 
-    public Contact(String Name, String LastName, String Date, String Time, String Address, int Sync_status){
+    public Contact(String License, String Name, String LastName, String Date, String Time, String Address, int Sync_status){
+        this.setLicense(License);
         this.setName(Name);
         this.setLastName(LastName);
         this.setDate(Date);
         this.setTime(Time);
         this.setAddress(Address);
         this.setSync_status(Sync_status);
+    }
+
+
+    public String getLicense() {
+        return License;
+    }
+
+    public void setLicense(String license) {
+        License = license;
     }
 
     public String getName() {

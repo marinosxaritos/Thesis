@@ -13,6 +13,7 @@ public class DbContact {
 
     public static final String DATABASE_NAME = "contactdb";
     public static final String TABLE_NAME = "contactinfo";
+    public static final String LICENSE = "license";
     public static final String NAME = "name";
     public static final String LAST_NAME = "last_name";
     public static final String DATE = "date";

@@ -40,6 +40,7 @@ public class NetworkMonitor extends BroadcastReceiver {
                 @SuppressLint("Range") int sync_status = cursor.getInt(cursor.getColumnIndex(DbContact.SYNC_STATUS));
 
                 if (sync_status == DbContact.SYNC_STATUS_FAILED) {
+                    @SuppressLint("Range") String License = cursor.getString(cursor.getColumnIndex(DbContact.LICENSE));
                     @SuppressLint("Range") String Name = cursor.getString(cursor.getColumnIndex(DbContact.NAME));
                     @SuppressLint("Range") String LastName = cursor.getString(cursor.getColumnIndex(DbContact.LAST_NAME));
                     @SuppressLint("Range") String Date = cursor.getString(cursor.getColumnIndex(DbContact.DATE));
@@ -55,7 +56,7 @@ public class NetworkMonitor extends BroadcastReceiver {
                                         String Response = jsonObject.getString("response");
 
                                         if (Response.equals("OK")) {
-                                            dbHelper.updateLocalDatabase(Name, LastName, Date, Time, Address, DbContact.SYNC_STATUS_OK, database);
+                                            dbHelper.updateLocalDatabase(License, Name, LastName, Date, Time, Address, DbContact.SYNC_STATUS_OK, database);
                                             context.sendBroadcast(new Intent(DbContact.UI_UPDATE_BROADCAST));
                                         }
 
@@ -74,6 +75,7 @@ public class NetworkMonitor extends BroadcastReceiver {
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String, String> params = new HashMap<>();
+                            params.put("license", License);
                             params.put("name", Name);
                             params.put("last_name", LastName);
                             params.put("date", Date);

@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:background="@color/background"
     android:layout_width="match_parent"
-    android:layout_height="300dp">
+    android:layout_height="335dp">
 
     <androidx.cardview.widget.CardView
         android:elevation="20dp"
@@ -42,6 +42,7 @@
                 android:textStyle="bold"
                 tools:ignore="RelativeOverlap" />
 
+
             <View
                 android:id="@+id/line3"
                 android:layout_width="match_parent"
@@ -50,12 +51,34 @@
                 android:layout_marginTop="3dp"
                 android:background="@color/background" />
 
+
+            <TextView
+                android:id="@+id/txtLicense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_below="@+id/txtInformation"
+                android:text="license"
+                android:layout_marginTop="12dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/text"
+                tools:ignore="RelativeOverlap" />
+
+            <View
+                android:id="@+id/line0"
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_below="@id/txtLicense"
+                android:layout_marginTop="2dp"
+                android:background="@color/background" />
+
             <TextView
                 android:id="@+id/txtName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_below="@+id/txtInformation"
+                android:layout_below="@+id/txtLicense"
                 android:text="marinos"
                 android:layout_marginTop="12dp"
                 android:textSize="20sp"

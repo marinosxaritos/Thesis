@@ -35,6 +35,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+        holder.License.setText(arrayList.get(position).getLicense());
         holder.Name.setText(arrayList.get(position).getName());
         holder.LastName.setText(arrayList.get(position).getLastName());
         holder.Date.setText(arrayList.get(position).getDate());
@@ -59,6 +60,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView Sync_Status;
+        TextView License;
         TextView Name;
         TextView LastName;
         TextView Date;
@@ -69,6 +71,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             super(itemView);
 
             Sync_Status = (ImageView) itemView.findViewById(R.id.imgSync);
+            License = (TextView) itemView.findViewById(R.id.txtLicense);
             Name = (TextView) itemView.findViewById(R.id.txtName);
             LastName = (TextView) itemView.findViewById(R.id.txtLastName);
             Date = (TextView) itemView.findViewById(R.id.txtDate);
