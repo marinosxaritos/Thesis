@@ -48,6 +48,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.synctest.contacts.DbContact;
 import com.example.synctest.database.DbHelper;
+import com.example.synctest.fragments.EquipmentFragment;
 import com.example.synctest.fragments.IncidentReportFragment;
 import com.example.synctest.ui.RecyclerAdapter;
 import com.example.synctest.utilities.MySingleton;
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     TextView Address;
     TextView Time;
     Button btNext;
+    Button btEquipment;
     FusedLocationProviderClient fusedLocationProviderClient;
     DatePickerDialog.OnDateSetListener setListener;
     RecyclerView recyclerView;
@@ -231,10 +233,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+
         btNext = (Button) findViewById(R.id.nextBtn);
-
-
-
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -244,6 +244,21 @@ public class MainActivity extends AppCompatActivity {
 
 
                 Fragment fragment = new IncidentReportFragment();
+
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.activity_main, fragment).commit();
+            }
+        });
+
+
+        btEquipment = (Button) findViewById(R.id.equipmentBtn);
+        btEquipment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                findViewById(R.id.recyclerView).setVisibility(View.GONE);
+                findViewById(R.id.scroll1).setVisibility(View.GONE);
+
+                Fragment fragment = new EquipmentFragment();
 
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.activity_main, fragment).commit();
