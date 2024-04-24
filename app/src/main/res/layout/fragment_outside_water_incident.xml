@@ -11,7 +11,7 @@
         android:id="@+id/incidentHeadline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="12dp"
         android:text="Outside the Water"
         android:textColor="@color/headlineText"
         android:textSize="20sp"
@@ -25,14 +25,29 @@
         android:layout_marginTop="3dp"
         android:background="@color/cardView" />
 
+    <EditText
+        android:id="@+id/licenseTextview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:layout_below="@+id/incidentHeadline"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/text"
+        android:textColorHint="@color/text"
+        android:background="@drawable/custom_input"
+        android:hint="License" />
+
     <TextView
         android:id="@+id/flagColorText"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_below="@+id/incidentHeadline"
+        android:layout_below="@+id/licenseTextview"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="12dp"
         android:textColor="@color/text"
         android:text="Flag Color:"
         android:gravity="center"
@@ -41,16 +56,17 @@
 
     <Spinner
         android:id="@+id/flagSpinner"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_below="@+id/incidentHeadline"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="75dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="120dp"
-        android:popupBackground="@color/cardView"
+        android:layout_marginStart="198dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/custom_spinner"
+        android:popupBackground="@drawable/custom_popup"
         android:popupElevation="10dp"
         android:textAlignment="center"
-        android:backgroundTint="@color/outlineColor"
         />
 
     <TextView
@@ -58,9 +74,9 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_below="@+id/flagColorText"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="12dp"
         android:textColor="@color/text"
         android:text="Cause of Incident:"
         android:gravity="center"
@@ -69,54 +85,63 @@
 
     <Spinner
         android:id="@+id/causeSpinner"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_below="@+id/flagColorText"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="190dp"
-        android:popupBackground="@color/cardView"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="198dp"
         android:popupElevation="10dp"
         android:textAlignment="center"
-        android:backgroundTint="@color/outlineColor"
+        android:background="@drawable/custom_spinner"
+        android:popupBackground="@drawable/custom_popup"
+
         />
 
     <EditText
         android:id="@+id/distanceEdit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:hint="Distance from the tower"
         android:layout_below="@+id/causeSpinner"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
-        android:textColor="@color/text" />
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="@color/text"
+        android:textColorHint="@color/text"
+        android:background="@drawable/custom_input" />
 
     <EditText
         android:id="@+id/rescuedEdit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:hint="Number of rescued people"
         android:layout_below="@+id/distanceEdit"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
-        android:textColor="@color/text" />
+        android:paddingEnd="12dp"
+        android:paddingStart="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/text"
+        android:textColorHint="@color/text"
+        android:background="@drawable/custom_input" />
 
     <Button
         android:id="@+id/sendBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
         android:layout_below="@id/rescuedEdit"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/submit_button"
         android:text="SENT"
-        android:textColor="@color/black"
+        android:textColor="@color/button"
         android:textStyle="bold" />
 
 

@@ -4,6 +4,7 @@ import static android.R.layout.simple_expandable_list_item_1;
 import static android.R.layout.simple_spinner_item;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -57,6 +58,23 @@ public class IncidentReportFragment extends Fragment {
         insideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                outsideButton.setBackgroundResource(R.drawable.grap_button);
+                outsideButton.setTextColor(getResources().getColor(R.color.textHover));
+
+                insideButton.setBackgroundResource(R.drawable.submit_button);
+                insideButton.setTextColor(getResources().getColor(R.color.white));
+
+                insideButton.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        insideButton.setBackgroundResource(R.drawable.rounded_button);
+                        insideButton.setTextColor(getResources().getColor(R.color.black));
+                    }
+                }, 40); // Change back after 1 second (adjust the delay as needed)
+                // After a delay or when certain conditions are met, revert back to the original drawable
+
+
                 loadFragment(new InsideWaterIncidentFragment());
             }
         });
@@ -64,18 +82,45 @@ public class IncidentReportFragment extends Fragment {
         outsideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                insideButton.setBackgroundResource(R.drawable.grap_button);
+                insideButton.setTextColor(getResources().getColor(R.color.textHover));
+
+                outsideButton.setBackgroundResource(R.drawable.submit_button);
+                outsideButton.setTextColor(getResources().getColor(R.color.white));
+
+                outsideButton.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        outsideButton.setBackgroundResource(R.drawable.rounded_button);
+                        outsideButton.setTextColor(getResources().getColor(R.color.black));
+                    }
+                }, 40); // Change back after 1 second (adjust the delay as needed)
+                // After a delay or when certain conditions are met, revert back to the original drawable
+
+
+
                 loadFragment(new OutsideWaterIncidentFragment());
             }
         });
+
+
+
 
 
         nextButton = (Button) rootView.findViewById(R.id.nextBtn);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rootView.findViewById(R.id.insideWaterButton).setVisibility(View.GONE);
+
+                final MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.lost_saga_select_2);
+                mediaPlayer.start();
+
+                /*rootView.findViewById(R.id.insideWaterButton).setVisibility(View.GONE);
                 rootView.findViewById(R.id.outsideWaterButton).setVisibility(View.GONE);
-                rootView.findViewById(R.id.nextBtn).setVisibility(View.GONE);
+                rootView.findViewById(R.id.nextBtn).setVisibility(View.GONE);*/
+
+                hideAllViews(rootView);
 
                 Fragment firstAidFrag = new FirstAidFragment();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -88,6 +133,10 @@ public class IncidentReportFragment extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.lost_saga_select_2);
+                mediaPlayer.start();
+
                 // Create an intent to start the main activity
                 Intent intent = new Intent(requireContext(), MainActivity.class);
                 // Clear the back stack so that the main activity becomes the only activity in the stack
@@ -109,6 +158,15 @@ public class IncidentReportFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
+    private void hideAllViews(View rootView) {
+        if (rootView instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) rootView;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View child = viewGroup.getChildAt(i);
+                child.setVisibility(View.GONE);
+            }
+        }
+    }
 
 }
     

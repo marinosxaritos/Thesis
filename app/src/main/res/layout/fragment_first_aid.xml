@@ -17,13 +17,13 @@
         android:textColor="@color/headlineText"
         android:layout_marginBottom="12dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="8dp" />
+        android:layout_marginStart="12dp" />
 
     <Button
         android:id="@+id/breathButton"
-        android:layout_width="180dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="10dp"
@@ -35,11 +35,11 @@
 
     <Button
         android:id="@+id/noBreathButton"
-        android:layout_width="180dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="10dp"
         android:layout_below="@+id/firstAidHeadline"
         android:background="@drawable/rounded_button"
@@ -47,11 +47,25 @@
         android:textColor="@color/black"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rounded_button"
+        android:text="Back"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
     <FrameLayout
         android:id="@+id/frameLayout1"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="520dp"
         android:layout_below="@+id/breathButton"
-        android:layout_marginTop="18dp" />
+        android:layout_marginTop="12dp" />
 
 </RelativeLayout>

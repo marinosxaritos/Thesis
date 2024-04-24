@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <!-- Define the stroke first so it's drawn beneath the shape -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/background"/>
+                    <corners android:radius="10dp"/>
+                    <stroke android:color="@color/cardView" android:width="1.5dp"/>
+                </shape>
+            </item>
+
+            <!-- Then, add the drawable (arrow) on top -->
+            <item android:drawable="@drawable/baseline_arrow_drop_down_circle_24"
+                android:gravity="end|center_vertical" android:right="6dp" android:left="100dp" android:height="20dp" android:top="12dp" android:bottom="10dp"  />
+        </layer-list>
+    </item>
+</selector>

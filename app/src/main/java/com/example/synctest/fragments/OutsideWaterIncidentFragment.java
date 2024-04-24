@@ -2,6 +2,7 @@ package com.example.synctest.fragments;
 
 import static android.R.layout.simple_spinner_item;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -32,6 +33,7 @@ public class OutsideWaterIncidentFragment extends Fragment {
     Spinner spinner;
     Spinner causeSpinner;
     EditText distance;
+    TextView license;
     TextView rescued;
     Button sendButton;
 
@@ -42,41 +44,58 @@ public class OutsideWaterIncidentFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_outside_water_incident, container, false);
 
         spinner = (Spinner) rootView.findViewById(R.id.flagSpinner);
-
         String[] flag = {"Red", "Yellow", "Green"};
-        ArrayAdapter<String> flagAdapter = new ArrayAdapter<>(getContext(), simple_spinner_item, flag);
+        ArrayAdapter<String> flagAdapter = new ArrayAdapter<>(getContext(), R.layout.text_color_spinner, flag);
         spinner.setAdapter(flagAdapter);
+        flagAdapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
 
         causeSpinner = (Spinner) rootView.findViewById(R.id.causeSpinner);
-
         String[] cause = {"Pathological", "Bleeding", "Burns", "Injury", "Sunstroke", "Heat stroke", "Marine life"};
-        ArrayAdapter<String> causeAdapter = new ArrayAdapter<>(getContext(), simple_spinner_item, cause);
+        ArrayAdapter<String> causeAdapter = new ArrayAdapter<>(getContext(), R.layout.text_color_spinner, cause);
         causeSpinner.setAdapter(causeAdapter);
+        causeAdapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
 
         distance = (EditText) rootView.findViewById(R.id.distanceEdit);
-
         rescued = (EditText) rootView.findViewById(R.id.rescuedEdit);
+        license = (EditText) rootView.findViewById(R.id.licenseTextview);
 
         sendButton = (Button) rootView.findViewById(R.id.sendBtn);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.portalbuttonpositive);
+                mediaPlayer.start();
+
+                sendButton.setBackgroundResource(R.drawable.rounded_button);
+                sendButton.setTextColor(getResources().getColor(R.color.black));
+                // After a delay or when certain conditions are met, revert back to the original drawable
+                sendButton.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        sendButton.setBackgroundResource(R.drawable.submit_button);
+                        sendButton.setTextColor(getResources().getColor(R.color.button));
+                    }
+                }, 100); // Change back after 1 second (adjust the delay as needed)
+
                 // Get the selected flag from the spinner
                 String selectedFlag = spinner.getSelectedItem().toString();
                 String causeOfIncident = causeSpinner.getSelectedItem().toString();
                 String distanceMeter = distance.getText().toString();
                 String rescuedPeople = rescued.getText().toString();
+                String licenseCode = license.getText().toString();
                 // Call the method to send the flag to MySQL using Volley
-                sendOutsideWaterInformation(selectedFlag, causeOfIncident, distanceMeter, rescuedPeople);
+                sendOutsideWaterInformation(selectedFlag, causeOfIncident, distanceMeter, rescuedPeople, licenseCode);
                 distance.setText("");
                 rescued.setText("");
+                license.setText("");
             }
         });
 
         return rootView;
     }
 
-    private void sendOutsideWaterInformation(final String flag, String cause, String distance, String rescued) {
+    private void sendOutsideWaterInformation(final String flag, String cause, String distance, String rescued, String license) {
         String url = "http://192.168.1.13/syncdemo/outsideWaterInsident.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -102,6 +121,7 @@ public class OutsideWaterIncidentFragment extends Fragment {
                 params.put("cause", cause);
                 params.put("distance", distance);
                 params.put("rescued", rescued);
+                params.put("license", license);
                 return params;
             }
         };

@@ -3,6 +3,7 @@ package com.example.synctest.fragments;
 import static android.R.layout.simple_list_item_checked;
 import static android.R.layout.simple_spinner_item;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -37,6 +38,7 @@ public class InsideWaterIncidentFragment extends Fragment {
     Button sendButton;
     TextView distance;
     TextView rescued;
+    TextView license;
     RadioGroup radioGroup;
     String checkedRadioText;
 
@@ -50,18 +52,20 @@ public class InsideWaterIncidentFragment extends Fragment {
         spinner = (Spinner) rootView.findViewById(R.id.flagSpinner);
 
         String[] flag = {"Red", "Yellow", "Green"};
-        ArrayAdapter<String> flagAdapter = new ArrayAdapter<>(getContext(), simple_spinner_item, flag);
+        ArrayAdapter<String> flagAdapter = new ArrayAdapter<>(getContext(), R.layout.text_color_spinner, flag);
         spinner.setAdapter(flagAdapter);
+        flagAdapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
 
         rescueSpinner = (Spinner) rootView.findViewById(R.id.rescueSpinner);
 
         String[] rescue = {"Can", "Board", "Boat"};
-        ArrayAdapter<String> rescueAdapter = new ArrayAdapter<>(getContext(), simple_spinner_item, rescue);
+        ArrayAdapter<String> rescueAdapter = new ArrayAdapter<>(getContext(), R.layout.text_color_spinner, rescue);
         rescueSpinner.setAdapter(rescueAdapter);
+        rescueAdapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
 
         distance = (EditText) rootView.findViewById(R.id.distanceEdit);
-
         rescued = (EditText) rootView.findViewById(R.id.rescuedEdit);
+        license = (EditText) rootView.findViewById(R.id.licenseTextview);
 
         radioGroup = (RadioGroup) rootView.findViewById(R.id.buoysRadio);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -69,6 +73,16 @@ public class InsideWaterIncidentFragment extends Fragment {
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 RadioButton buoysRadioButton = (RadioButton) rootView.findViewById(checkedId);
                 checkedRadioText = buoysRadioButton.getText().toString();
+                for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                    RadioButton radioButton = (RadioButton) radioGroup.getChildAt(i);
+                    if (radioButton.getId() == checkedId) {
+                        // Set the background drawable for the selected RadioButton
+                        radioButton.setBackgroundResource(R.drawable.custom_popup);
+                    } else {
+                        // Set the background drawable for the unselected RadioButtons
+                        radioButton.setBackgroundResource(R.drawable.custom_input);
+                    }
+                }
             }
         });
 
@@ -77,6 +91,21 @@ public class InsideWaterIncidentFragment extends Fragment {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.portalbuttonpositive);
+                mediaPlayer.start();
+
+                sendButton.setBackgroundResource(R.drawable.rounded_button);
+                sendButton.setTextColor(getResources().getColor(R.color.black));
+                // After a delay or when certain conditions are met, revert back to the original drawable
+                sendButton.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        sendButton.setBackgroundResource(R.drawable.submit_button);
+                        sendButton.setTextColor(getResources().getColor(R.color.button));
+                    }
+                }, 100); // Change back after 1 second (adjust the delay as needed)
+
                 // Get the selected flag from the spinner
                 String selectedFlag = spinner.getSelectedItem().toString();
                 String distanceMeter = distance.getText().toString();
@@ -84,20 +113,21 @@ public class InsideWaterIncidentFragment extends Fragment {
                 String selectedBuoysRadio = checkedRadioText != null ? checkedRadioText : "";
 
                 String rescueItem = rescueSpinner.getSelectedItem().toString();
-
                 String rescuedPeople = rescued.getText().toString();
+                String licenseCode = license.getText().toString();
 
                 // Call the method to send the flag to MySQL using Volley
-                sendInsideWaterInformation(selectedFlag, distanceMeter, selectedBuoysRadio, rescueItem, rescuedPeople);
+                sendInsideWaterInformation(selectedFlag, distanceMeter, selectedBuoysRadio, rescueItem, rescuedPeople, licenseCode);
                 distance.setText("");
                 rescued.setText("");
+                license.setText("");
             }
         });
 
         return rootView;
     }
 
-    private void sendInsideWaterInformation(final String flag, String distance, String buoys, String rescue, String rescued) {
+    private void sendInsideWaterInformation(final String flag, String distance, String buoys, String rescue, String rescued, String license) {
         String url = "http://192.168.1.13/syncdemo/insideWaterInsident.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -105,7 +135,7 @@ public class InsideWaterIncidentFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         // Handle response from the server
-                        Toast.makeText(requireContext(), "Dat sent successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Data sent successfully", Toast.LENGTH_SHORT).show();
                         // Optionally, navigate to another fragment or perform other actions
                     }
                 },
@@ -124,6 +154,7 @@ public class InsideWaterIncidentFragment extends Fragment {
                 params.put("buoys", buoys);
                 params.put("rescue", rescue);
                 params.put("rescued", rescued);
+                params.put("license", license);
                 return params;
             }
         };

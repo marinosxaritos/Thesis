@@ -3,13 +3,19 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="background">#495057</color>  76ABAE
-    <color name="button">#EEEEEE</color>
+    <color name="button1">#EEEEEE</color>
     <color name="cardView">#343a40</color>   C4DFDF
-    <color name="headlineText">#B2FFEB3B</color>
-    <color name="headlineTextCardView">#A3FFEB3B</color>  #ced4da
+    <color name="headlineText">#BDB76B</color>
+    <color name="headlineTextCardView">#EEBDB76B</color>  #ced4da
     <color name="outlineColor">#A3FFEB3B</color>
     <color name="scrollbar">#4BFFEB3B</color>
     <color name="text">#adb5bd</color>
+    <color name="editTextOutline">#76ABAE</color>
+    <color name="editTextHover">#414951</color>
+    <color name="hover">#D0D0D0</color>
+    <color name="button">#F0F0F0</color>
+    <color name="hoverOutline">#A0A0A0</color>
+    <color name="textHover">#CE343A40</color>
 
 
 </resources>

@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
         android:text="No Breath"
         android:textColor="@color/headlineText"
         android:textSize="20sp"
@@ -22,18 +23,33 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/breathHeadline"
-        android:layout_marginTop="3dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/cardView" />
+
+    <EditText
+        android:id="@+id/licenseTextview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/breathHeadline"
+        android:background="@drawable/custom_input"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/text"
+        android:textColorHint="@color/text"
+        android:hint="License" />
 
     <TextView
         android:id="@+id/cardiopulmonaryRevitalizationText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/breathHeadline"
+        android:layout_below="@+id/licenseTextview"
         android:text="Cardiopulmonary Revitalization"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         android:textColor="@color/text"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -44,23 +60,36 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/cardiopulmonaryRevitalizationText"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         >
 
         <RadioButton
             android:id="@+id/withOxygenRadio"
-            android:layout_width="wrap_content"
+            android:layout_width="145dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="24dp"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:theme="@style/RadioButtonStyle"
+            android:background="@drawable/custom_input"
+            android:paddingLeft="8dp"
             android:text="With Oxygen" />
 
         <RadioButton
             android:id="@+id/withoutOxygenRadio"
-            android:layout_width="wrap_content"
+            android:layout_width="165dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="45dp"
+            android:layout_marginStart="24dp"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginEnd="12dp"
+            android:theme="@style/RadioButtonStyle"
+            android:background="@drawable/custom_input"
+            android:paddingLeft="8dp"
             android:text="Without Oxygen"/>
 
     </RadioGroup>
@@ -70,10 +99,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cardiopulmonaryRadio"
-        android:text="Automated External Defibrillator AED"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:text="Automated External Defibrillator"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
         android:textColor="@color/text"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -85,23 +114,36 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@+id/defibrillatorText"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         >
 
         <RadioButton
             android:id="@+id/defibrillatorGivenRadio"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="24dp"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:theme="@style/RadioButtonStyle"
+            android:background="@drawable/custom_input"
+            android:paddingLeft="8dp"
             android:text="Defibrillation was given" />
 
         <RadioButton
             android:id="@+id/noDefibrillatorGivenRadio"
-            android:layout_width="wrap_content"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:theme="@style/RadioButtonStyle"
+            android:background="@drawable/custom_input"
+            android:paddingLeft="8dp"
             android:text="no Defibrillation was given"/>
 
     </RadioGroup>
@@ -112,9 +154,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/defibrillatorRadio"
         android:text="Recovery of Sensations"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
         android:textColor="@color/text"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -125,23 +167,36 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/recoveryText"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         >
 
         <RadioButton
             android:id="@+id/successfulRadio"
-            android:layout_width="wrap_content"
+            android:layout_width="135dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="24dp"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:theme="@style/RadioButtonStyle"
+            android:background="@drawable/custom_input"
+            android:paddingLeft="8dp"
             android:text="Successful" />
 
         <RadioButton
             android:id="@+id/unsuccessfulRadio"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
+            android:layout_marginStart="36dp"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginEnd="12dp"
+            android:theme="@style/RadioButtonStyle"
+            android:background="@drawable/custom_input"
+            android:paddingLeft="8dp"
             android:text="Unsuccessful"/>
 
     </RadioGroup>
@@ -150,14 +205,14 @@
         android:id="@+id/sendBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="10dp"
         android:layout_below="@+id/recoveryRadio"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/submit_button"
         android:text="SENT"
-        android:textColor="@color/black"
+        android:textColor="@color/button"
         android:textStyle="bold" />
 
 

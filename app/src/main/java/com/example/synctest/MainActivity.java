@@ -28,10 +28,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -76,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
     EditText License;
     EditText Name;
     EditText LastName;
-    EditText Date;
+    //EditText Date;
+    TextView Date;
     Button btLocation;
     TextView Address;
     TextView Time;
@@ -129,16 +132,29 @@ public class MainActivity extends AppCompatActivity {
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
 
-        Date = (EditText) findViewById(R.id.date);
+        Date = findViewById(R.id.date);
 
         btLocation = (Button) findViewById(R.id.locationButton);
-        Address = (TextView) findViewById(R.id.address);
+        Address = (TextView) findViewById(R.id.address_text_view);
+
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         btLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                btLocation.setBackgroundResource(R.drawable.submit_button);
+                btLocation.setTextColor(getResources().getColor(R.color.button));
+                // After a delay or when certain conditions are met, revert back to the original drawable
+                btLocation.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        btLocation.setBackgroundResource(R.drawable.rounded_button);
+                        btLocation.setTextColor(getResources().getColor(R.color.black));
+                    }
+                }, 40); // Change back after 1 second (adjust the delay as needed)
+
                 //check permission
                 if (ActivityCompat.checkSelfPermission(MainActivity.this
                         , Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -160,6 +176,18 @@ public class MainActivity extends AppCompatActivity {
         Date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Date.setBackgroundResource(R.drawable.submit_button);
+                Date.setTextColor(getResources().getColor(R.color.button));
+                // After a delay or when certain conditions are met, revert back to the original drawable
+                Date.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Date.setBackgroundResource(R.drawable.rounded_button);
+                        Date.setTextColor(getResources().getColor(R.color.black));
+                    }
+                }, 40); // Change back after 1 second (adjust the delay as needed)
+
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         MainActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
@@ -179,6 +207,18 @@ public class MainActivity extends AppCompatActivity {
         Time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Time.setBackgroundResource(R.drawable.submit_button);
+                Time.setTextColor(getResources().getColor(R.color.button));
+                // After a delay or when certain conditions are met, revert back to the original drawable
+                Time.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Time.setBackgroundResource(R.drawable.rounded_button);
+                        Time.setTextColor(getResources().getColor(R.color.black));
+                    }
+                }, 40); // Change back after 1 second (adjust the delay as needed)
+
                 //Initialize time picker dialog
                 TimePickerDialog timePickerDialog = new TimePickerDialog(
                         MainActivity.this,
@@ -238,6 +278,8 @@ public class MainActivity extends AppCompatActivity {
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.lost_saga_select_2);
+                mediaPlayer.start();
                 //btNext.setVisibility(View.GONE);
                 findViewById(R.id.recyclerView).setVisibility(View.GONE);
                 findViewById(R.id.scroll1).setVisibility(View.GONE);
@@ -255,6 +297,9 @@ public class MainActivity extends AppCompatActivity {
         btEquipment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.lost_saga_select_2);
+                mediaPlayer.start();
+
                 findViewById(R.id.recyclerView).setVisibility(View.GONE);
                 findViewById(R.id.scroll1).setVisibility(View.GONE);
 
@@ -293,10 +338,15 @@ public class MainActivity extends AppCompatActivity {
                                 location.getLatitude(), location.getLongitude(), 1
                         );
                         //Set address on TextView
-                        Address.setText(Html.fromHtml(
-                                "<font color='#6200EE'><b>Address :</b><br></font>"
+                        /*Address.setText(Html.fromHtml(
+                                "<font color='#adb5bd'><b>Address :</b><br></font>"
                                 + addresses.get(0).getAddressLine(0)
-                        ));
+                        ));*/
+
+                        String addressText = addresses.get(0).getAddressLine(0); // Assuming addresses is a List<Address>
+                        Address.setText(addressText);
+
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -306,6 +356,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitName(View view) {
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.portalbuttonpositive);
+        mediaPlayer.start();
+
+        Button submit = findViewById(R.id.submitBtn);
+
+        submit.setBackgroundResource(R.drawable.rounded_button);
+        submit.setTextColor(getResources().getColor(R.color.black));
+        // After a delay or when certain conditions are met, revert back to the original drawable
+        submit.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                submit.setBackgroundResource(R.drawable.submit_button);
+                submit.setTextColor(getResources().getColor(R.color.button));
+            }
+        }, 100); // Change back after 1 second (adjust the delay as needed)
+
         String license = License.getText().toString();
         String  name = Name.getText().toString();
         String last_name = LastName.getText().toString();
@@ -316,7 +382,8 @@ public class MainActivity extends AppCompatActivity {
         License.setText("");
         Name.setText("");
         LastName.setText("");
-        Date.setText("");
+        Address.setText("");
+        Date.setText("select date");
         Time.setText(" Select Time");
         Address.setText("Address");
     }

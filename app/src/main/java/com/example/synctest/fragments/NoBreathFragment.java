@@ -1,5 +1,6 @@
 package com.example.synctest.fragments;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -26,10 +28,9 @@ import java.util.Map;
 public class NoBreathFragment extends Fragment {
 
     Button sendButton;
-
     RadioGroup positionRadio, transportRadio, sensesRadio;
-
     String checkedRadioText, checkedRadioText1, checkedRadioText2;
+    EditText license;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +38,7 @@ public class NoBreathFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_no_breath, container, false);
 
+        license = (EditText) rootView.findViewById(R.id.licenseTextview);
         positionRadio = (RadioGroup) rootView.findViewById(R.id.recoveryPositionRadio);
         transportRadio = (RadioGroup) rootView.findViewById(R.id.transportedRadio);
         sensesRadio = (RadioGroup) rootView.findViewById(R.id.sensationsRadio);
@@ -46,6 +48,16 @@ public class NoBreathFragment extends Fragment {
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 RadioButton positionRadioButton = (RadioButton) rootView.findViewById(checkedId);
                 checkedRadioText = positionRadioButton.getText().toString();
+                for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                    RadioButton radioButton = (RadioButton) radioGroup.getChildAt(i);
+                    if (radioButton.getId() == checkedId) {
+                        // Set the background drawable for the selected RadioButton
+                        radioButton.setBackgroundResource(R.drawable.custom_popup);
+                    } else {
+                        // Set the background drawable for the unselected RadioButtons
+                        radioButton.setBackgroundResource(R.drawable.custom_input);
+                    }
+                }
             }
         });
 
@@ -54,6 +66,16 @@ public class NoBreathFragment extends Fragment {
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 RadioButton transportRadioButton = (RadioButton) rootView.findViewById(checkedId);
                 checkedRadioText1 = transportRadioButton.getText().toString();
+                for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                    RadioButton radioButton = (RadioButton) radioGroup.getChildAt(i);
+                    if (radioButton.getId() == checkedId) {
+                        // Set the background drawable for the selected RadioButton
+                        radioButton.setBackgroundResource(R.drawable.custom_popup);
+                    } else {
+                        // Set the background drawable for the unselected RadioButtons
+                        radioButton.setBackgroundResource(R.drawable.custom_input);
+                    }
+                }
             }
         });
 
@@ -62,6 +84,16 @@ public class NoBreathFragment extends Fragment {
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 RadioButton sensesRadioButton = (RadioButton) rootView.findViewById(checkedId);
                 checkedRadioText2 = sensesRadioButton.getText().toString();
+                for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                    RadioButton radioButton = (RadioButton) radioGroup.getChildAt(i);
+                    if (radioButton.getId() == checkedId) {
+                        // Set the background drawable for the selected RadioButton
+                        radioButton.setBackgroundResource(R.drawable.custom_popup);
+                    } else {
+                        // Set the background drawable for the unselected RadioButtons
+                        radioButton.setBackgroundResource(R.drawable.custom_input);
+                    }
+                }
             }
         });
 
@@ -70,14 +102,30 @@ public class NoBreathFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                final MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.portalbuttonpositive);
+                mediaPlayer.start();
+
+                sendButton.setBackgroundResource(R.drawable.rounded_button);
+                sendButton.setTextColor(getResources().getColor(R.color.black));
+                // After a delay or when certain conditions are met, revert back to the original drawable
+                sendButton.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        sendButton.setBackgroundResource(R.drawable.submit_button);
+                        sendButton.setTextColor(getResources().getColor(R.color.button));
+                    }
+                }, 100); // Change back after 1 second (adjust the delay as needed)
+
+                String licenseCode = license.getText().toString();
+
                 String selectedPositionRadio = checkedRadioText != null ? checkedRadioText : "";
                 String selectedTransportRadio = checkedRadioText1 != null ? checkedRadioText1 : "";
                 String selectedSensesRadio = checkedRadioText2 != null ? checkedRadioText2 : "";
 
 
                 // Call the method to send the flag to MySQL using Volley
-                sendNoBreathInformation(selectedPositionRadio, selectedTransportRadio, selectedSensesRadio);
-
+                sendNoBreathInformation(selectedPositionRadio, selectedTransportRadio, selectedSensesRadio, licenseCode);
+                license.setText("");
             }
         });
 
@@ -85,7 +133,7 @@ public class NoBreathFragment extends Fragment {
         return rootView;
     }
 
-    private void sendNoBreathInformation(final String recoveryPosition, String transported, String sensations) {
+    private void sendNoBreathInformation(final String recoveryPosition, String transported, String sensations, String license) {
         String url = "http://192.168.1.13/syncdemo/breathInsident.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -110,6 +158,7 @@ public class NoBreathFragment extends Fragment {
                 params.put("recoveryPosition", recoveryPosition); // Add the flag to the request parameters
                 params.put("transported", transported);
                 params.put("sensations", sensations);
+                params.put("license", license);
                 return params;
             }
         };

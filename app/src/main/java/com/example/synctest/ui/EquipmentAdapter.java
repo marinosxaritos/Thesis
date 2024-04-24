@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.synctest.R;
@@ -21,7 +23,7 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
     ArrayList<String>  arrayList;
     EquipmentListener equipmentListener;
 
-    ArrayList<String> arrayList_0 = new ArrayList<>();
+    public ArrayList<String> arrayList_0 = new ArrayList<>();
 
     public EquipmentAdapter(Context context, ArrayList<String> arrayList, EquipmentListener equipmentListener) {
         this.context = context;
@@ -50,11 +52,14 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.View
                 public void onClick(View view) {
                     if (holder.checkBox.isChecked()) {
                         arrayList_0.add(arrayList.get(position));
+                        holder.checkBox.setBackgroundResource(R.drawable.custom_card);
                     } else {
                         arrayList_0.remove(arrayList.get(position));
+                        holder.checkBox.setBackgroundResource(R.color.background);
                     }
                     equipmentListener.onEquipmentChange(arrayList_0);
                 }
+
             });
         }
     }

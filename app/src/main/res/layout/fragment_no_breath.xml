@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Breath"
         android:textColor="@color/headlineText"
         android:textSize="20sp"
@@ -22,18 +23,33 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/noBreathHeadline"
-        android:layout_marginTop="3dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/cardView" />
+
+    <EditText
+        android:id="@+id/licenseTextview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/noBreathHeadline"
+        android:paddingEnd="12dp"
+        android:paddingStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/custom_input"
+        android:textColor="@color/text"
+        android:textColorHint="@color/text"
+        android:hint="License" />
 
     <TextView
         android:id="@+id/recoveryPositionText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/noBreathHeadline"
+        android:layout_below="@+id/licenseTextview"
         android:text="Recovery Position"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         android:textColor="@color/text"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -44,23 +60,35 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/recoveryPositionText"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         >
 
         <RadioButton
             android:id="@+id/withOxygenRadio"
-            android:layout_width="wrap_content"
+            android:layout_width="145dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="24dp"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:theme="@style/RadioButtonStyle"
+            android:background="@drawable/custom_input"
+            android:paddingLeft="8dp"
             android:text="With Oxygen" />
 
         <RadioButton
             android:id="@+id/withoutOxygenRadio"
-            android:layout_width="wrap_content"
+            android:layout_width="165dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="45dp"
+            android:layout_marginStart="24dp"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:theme="@style/RadioButtonStyle"
+            android:background="@drawable/custom_input"
+            android:paddingLeft="8dp"
             android:text="Without Oxygen"/>
 
     </RadioGroup>
@@ -71,9 +99,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/recoveryPositionRadio"
         android:text="Transported to the Hospital"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
         android:textColor="@color/text"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -85,23 +113,35 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/transportedText"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         >
 
         <RadioButton
             android:id="@+id/yesTransportationRadio"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="24dp"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:theme="@style/RadioButtonStyle"
+            android:background="@drawable/custom_input"
+            android:paddingLeft="8dp"
             android:text="Yes" />
 
         <RadioButton
             android:id="@+id/noTransportationRadio"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="105dp"
+            android:layout_marginStart="90dp"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:theme="@style/RadioButtonStyle"
+            android:background="@drawable/custom_input"
+            android:paddingLeft="8dp"
             android:text="No" />
 
     </RadioGroup>
@@ -111,10 +151,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/transportedRadio"
-        android:text="Transferred to the Hospital with Sensations"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:text="Transferred with Sensations"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
         android:textColor="@color/text"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -125,23 +165,35 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/recoveryText"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
         >
 
         <RadioButton
             android:id="@+id/withSensationsRadio"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="24dp"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:theme="@style/RadioButtonStyle"
+            android:background="@drawable/custom_input"
+            android:paddingLeft="8dp"
             android:text="Yes" />
 
         <RadioButton
             android:id="@+id/withoutSensationsRadio"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="105dp"
+            android:layout_marginStart="90dp"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:theme="@style/RadioButtonStyle"
+            android:background="@drawable/custom_input"
+            android:paddingLeft="8dp"
             android:text="No"/>
 
     </RadioGroup>
@@ -150,14 +202,14 @@
         android:id="@+id/sendBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="10dp"
         android:layout_below="@+id/sensationsRadio"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/submit_button"
         android:text="SENT"
-        android:textColor="@color/black"
+        android:textColor="@color/button"
         android:textStyle="bold" />
 
 </RelativeLayout>

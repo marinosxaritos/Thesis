@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="RadioButtonStyle" parent="Theme.AppCompat.Light">
+        <!-- Set the color of the radio button -->
+        <item name="colorAccent">@color/editTextOutline</item> <!-- Example: Orange color -->
+
+        <!-- Set the default color of the radio button's text -->
+        <item name="android:textColorPrimary">#000000</item> <!-- Example: Black color -->
+    </style>
+</resources>
+
+
