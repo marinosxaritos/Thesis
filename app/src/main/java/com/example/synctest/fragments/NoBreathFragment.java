@@ -134,7 +134,8 @@ public class NoBreathFragment extends Fragment {
     }
 
     private void sendNoBreathInformation(final String recoveryPosition, String transported, String sensations, String license) {
-        String url = "http://192.168.1.13/syncdemo/breathInsident.php";
+        //String url = "http://192.168.1.13/syncdemo/breathInsident.php";
+        String url = "https://xaritos.com/breathInsident.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

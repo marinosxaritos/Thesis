@@ -135,7 +135,9 @@ public class EquipmentFragment extends Fragment implements EquipmentListener {
     }
 
     private void sendEquipmentInformation(final String equipment, String tower, String license) {
-        String url = "http://192.168.1.13/syncdemo/equipment.php";
+        //String url = "http://192.168.1.13/syncdemo/equipment.php";
+        String url = "https://xaritos.com/equipment.php";
+
 
         String equipmentString = TextUtils.join(", ", new String[]{equipment});
 

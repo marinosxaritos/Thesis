@@ -4,7 +4,8 @@ public class DbContact {
     public static final int SYNC_STATUS_OK = 0;
     public static final int SYNC_STATUS_FAILED = 1;
     //public static final String SERVER_URL = "http://10.0.2.2/syncdemo/syncifo.php";
-    public static final String SERVER_URL = "http://192.168.1.13/syncdemo/syncifo.php";
+    //public static final String SERVER_URL = "http://192.168.1.13/syncdemo/syncifo.php";
+    public static final String SERVER_URL = "https://xaritos.com/syncifo.php";
 
 
 
